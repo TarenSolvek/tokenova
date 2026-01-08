@@ -29,9 +29,6 @@ const ProductList = ({ category = null }) => {
   }, [category]);
 
 
-    const handleAgregarAlCarrito = (product) => {
-    alert(`Producto ${product.title} agregado al carrito`);
-  };
 
 
 

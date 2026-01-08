@@ -3,15 +3,15 @@ import { Container, Table, Button } from 'react-bootstrap';
 import { CartContext } from './CartContext';
 
 const ShoppingCart = () => {
-  const { ShoppingCart, setShoppingCart } = useContext(CartContext);
+  const { carrito, setCarrito } = useContext(CartContext);
 
   const eliminarDelCarrito = (id) => {
-    setShoppingCart(prev => prev.filter(producto => producto.id !== id));
+    setCarrito(prev => prev.filter(producto => producto.id !== id));
   };
 
   const total = carrito.reduce((acc, item) => acc + Number(item.price) * item.cantidad, 0);
 
-  if (ShoppingCart.length === 0) {
+  if (carrito.length === 0) {
     return (
       <Container className="mt-4">
         <h3>Tu carrito está vacío</h3>

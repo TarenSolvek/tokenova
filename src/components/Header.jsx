@@ -1,50 +1,55 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Button,Badge } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { CartContext } from './CartContext';
+import { Navbar, Nav, Container, Button, NavDropdown } from 'react-bootstrap';
 
 const Header = () => {
-  const { carrito } = useContext(CartContext);
-  const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  // Fixed positioning and sizing of header elements is handled by CSS (`src/index.css`).
+  // Removed runtime debugging and inline style forcing now that CSS rules are authoritative.
+
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
-      <Container>       
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-          <img
-            src="https://placehold.co/130x50?text=Black Goose" alt="Logo"
-            className="d-inline-block align-top me-3"
-          />
-          <span>Tienda de café</span>
-        </Navbar.Brand>
+    <>
+      {/* Barra superior con enlaces a la derecha */}
+      <div className="top-bar bg-primary text-white">
+        <Container className="d-flex justify-content-end align-items-center gap-3 small">
+          <Nav.Link as={Link} to="/blog" className="me-3">BLOG</Nav.Link>
 
-        <Nav className="ms-auto align-items-center">
-          <Nav.Link as={Link} to="/" className="me-3">Inicio</Nav.Link>
-          <Nav.Link as={Link} to="/" className="me-3">Productos</Nav.Link>
+          <NavDropdown title="MI CUENTA" id="top-account-dropdown" align="end" className="m-0">
+            <NavDropdown.Item as={Link} to="/cartera">Cartera</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/verificacion">Verificación de identidad</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/detalles-cuenta">Detalles de la cuenta</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item as={Link} to="/logout">Cerrar sesión</NavDropdown.Item>
+          </NavDropdown>
+        </Container>
+      </div>
 
-          
+      <Navbar bg="dark" variant="dark" expand="lg" className="mb-4 main-navbar">
+        <Container>       
+          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+            <img
+              src="https://placehold.co/130x50?text=Tokenova" alt="Logo"
+              className="d-inline-block align-top me-3"
+            />
+            {/*<span>Tienda de café</span>*/}
+          </Navbar.Brand>
 
-          <Nav.Link as={Link} to="/deals" className="me-3">Ofertas</Nav.Link>
-          <Nav.Link as={Link} to="/essentials" className="me-3">Infaltables</Nav.Link>
+          <Nav className="ms-auto align-items-center">
+            <Nav.Link as={Link} to="/marketplace" className="me-3">Marketplace</Nav.Link>
+            <Nav.Link as={Link} to="/como-funciona" className="me-3">Cómo funciona</Nav.Link>
+            <Nav.Link as={Link} to="/aprender" className="me-3">Aprender</Nav.Link>
+            <NavDropdown title="Equipo" id="team-dropdown" align="end" className="me-3">
+              <NavDropdown.Item as={Link} to="/sobre-nosotros">Sobre nosotros</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/empleos">Empleos</NavDropdown.Item>
+            </NavDropdown>
 
-          <div className="d-flex align-items-center">
-            <Button variant="outline-light" as={Link} to="/administracion" className="me-2">
-              Administración
+            <Button variant="primary" as={Link} to="/comenzar" className="ms-3">
+              COMENZAR
             </Button>
-            <Link to="/carrito" className="text-white position-relative">
-              <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-                            {totalItems > 0 && (
-                <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle">
-                  {totalItems}
-                </Badge>
-              )}
-            </Link>
-          </div>
-        </Nav>
-      </Container>
-    </Navbar>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 

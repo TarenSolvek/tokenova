@@ -13,6 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Header sizing for fixed layout */
+:root {
+  --topbar-height: 40px;
+  --main-navbar-height: 60px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +30,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
+  /* Ensure content spans full width so sections center correctly via Bootstrap containers */
 }
 
 h1 {
@@ -64,5 +70,146 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* Top bar styles */
+.top-bar {
+  display: block;
+  width: 100%;
+  background-color: var(--bs-primary) !important; /* Usa el mismo color que bg-primary (Footer) */
+  color: #ffffff !important;
+  padding: 0.375rem 0 !important; /* 50% más alto que py-1 (.25rem) */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.top-bar > .container,
+.top-bar .container {
+  background-color: inherit !important; /* Asegura que el contenedor no tenga fondo propio */
+  width: 100%;
+}
+.top-bar .nav-link,
+.top-bar .dropdown-toggle,
+.top-bar a,
+.top-bar .dropdown-item {
+  color: #ffffff !important;
+  opacity: 0.95;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.top-bar .nav-link:hover,
+.top-bar .dropdown-toggle:hover,
+.top-bar a:hover {
+  opacity: 1 !important;
+  text-decoration: none;
+}
+.top-bar .dropdown-toggle {
+  color: #ffffff !important;
+}
+.top-bar .dropdown-toggle::after {
+  border-top-color: #ffffff !important;
+  border-right-color: #ffffff !important;
+}
+.top-bar .dropdown-menu {
+  min-width: 220px;
+  background-color: #ffffff !important; /* fondo sólido para evitar confusión con la top-bar */
+  color: #213547 !important; /* texto oscuro legible */
+  border: 1px solid rgba(33, 53, 71, 0.08);
+  box-shadow: 0 6px 18px rgba(3, 10, 30, 0.12);
+}
+.top-bar .dropdown-item {
+  color: #213547 !important;
+  background-color: transparent;
+}
+.top-bar .dropdown-item:hover {
+  background-color: #f1f3ff; /* suave color de hover sobre fondo claro */
+  color: #213547 !important;
+}
+
+/* Make top-bar fixed at top and main navbar fixed below it */
+.top-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: var(--topbar-height) !important;
+  display: flex !important;
+  align-items: center !important;
+  z-index: 1100 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.top-bar .container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main-navbar {
+  position: fixed !important;
+  top: calc(var(--topbar-height)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1090 !important;
+}
+
+/* Add top padding to site content to avoid being hidden behind fixed header */
+.site-content {
+  padding-top: calc(var(--topbar-height) + var(--main-navbar-height));
+}
+
+/* Mobile: make top-bar compact and ensure fixed behavior */
+@media (max-width: 576px) {
+  :root {
+    --topbar-height: 36px;
+    --main-navbar-height: 56px;
+  }
+  .top-bar {
+    height: var(--topbar-height) !important;
+  }
+  .top-bar .container {
+    justify-content: center !important;
+  }
+}
+
+
+/* Header Navbar Styles */
+.navbar-dark .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+.navbar-dark .nav-link:hover {
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* COMENZAR Button Styles */
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  box-shadow: 0 6px 18px rgba(26, 42, 90, 0.12);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary:hover {
+  filter: brightness(1.06) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(26, 42, 90, 0.16);
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse .btn-primary {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .top-bar {
+    padding: 0.25rem 0 !important;
+  }
+  .top-bar .container {
+    justify-content: center !important;
+  }
+  .top-bar .nav-link {
+    padding: 0.25rem 0.5rem;
   }
 }

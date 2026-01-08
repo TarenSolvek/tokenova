@@ -1,0 +1,56 @@
+/* Product V2 styles (inspirado en RealT buy-tokens) */
+.product-card-v2 {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(12, 25, 50, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-v2 .card-media {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.product-card-v2 .card-media .card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-card-v2 .ribbon {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.product-card-v2 .price-badge {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.product-card-v2 .product-title {
+  font-size: 1.05rem;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: calc(var(--topbar-height) + var(--main-navbar-height) + 16px);
+}
+
+@media (max-width: 991px) {
+  .sticky-sidebar { position: static; }
+  .product-card-v2 .card-media { height: 220px; }
+}

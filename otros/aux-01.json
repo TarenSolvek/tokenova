@@ -1,0 +1,28 @@
+  {
+    "title": "Cumbre 1",
+    "description": "Café en grano 454gr",
+    "price": 73650,
+    "image": "https://res.cloudinary.com/dwvi0c49z/image/upload/v1764856630/0001_cumbre_x6vioa.webp",
+    "stock": 40,
+    "category": "deals",
+    "id": "1"
+  }
+
+id : Object ID : String (unique)
+title : String "2519 Highwood"
+description : String "DALLAS, TX - USA"
+
+price : Number
+image : String (url)  
+stock : Number
+category : String
+
+Status: String  (Limited Release, Available,Sold Out)
+expectedIncome: number 3.40% 6-20% 8.82% 
+TokenPrice: number $ 50.95   52.12  50.46
+assetClassId: String  (Real Estate, Art, Commodities)
+assetClassDes: String  (Real Estate, Art, Commodities)
+
+- Equity • Single Family
+- Preconstruction • Condo
+- Equity • Multi Family
